@@ -20,6 +20,7 @@ require 'gattica/auth'
 require 'gattica/account'
 require 'gattica/data_set'
 require 'gattica/data_point'
+require 'gattica/segment'
 
 # Gattica is a Ruby library for talking to the Google Analytics API.
 #
@@ -68,7 +69,9 @@ module Gattica
       
       @profile_id = @options[:profile_id]     # if you don't include the profile_id now, you'll have to set it manually later via Gattica::Engine#profile_id=
       @user_accounts = nil                    # filled in later if the user ever calls Gattica::Engine#accounts
+      @user_segments = nil
       @headers = {}.merge(@options[:headers]) # headers used for any HTTP requests (Google requires a special 'Authorization' header which is set any time @token is set)
+      @default_account_feed = nil             # We don't want to call /analytics/feeds/accounts/default more than once so do it once and keep in in here
       
       # save an http connection for everyone to use
       @http = Net::HTTP.new(SERVER, PORT)
@@ -96,7 +99,7 @@ module Gattica
     # instance and you can make regular calls from then on.
     #
     #   ga = Gattica.new({:email => 'johndoe@google.com', :password => 'password'})
-    #   ga.get_accounts
+    #   ga.accounts
     #   # you parse through the accounts to find the profile_id you need
     #   ga.profile_id = 12345678
     #   # now you can perform a regular search, see Gattica::Engine#get
@@ -109,13 +112,35 @@ module Gattica
     def accounts
       # if we haven't retrieved the user's accounts yet, get them now and save them
       if @user_accounts.nil?
-        data = do_http_get('/analytics/feeds/accounts/default')
+        data = request_default_account_feed
         xml = Hpricot(data)
         @user_accounts = xml.search(:entry).collect { |entry| Account.new(entry) }
       end
       return @user_accounts
     end
-    
+
+    # Returns the list of segments available to the authenticated user.
+    # 
+    # == Usage
+    #   ga = Gattica.new({:email => 'johndoe@google.com', :password => 'password'})
+    #   ga.segments                       # Look up segment id
+    #   my_gaid = 'gaid::-5'              # Non-paid Search Traffic
+    #   ga.profile_id = 12345678          # Set our profile ID
+    # 
+    #   gs.get({ :start_date => '2008-01-01', 
+    #            :end_date => '2008-02-01', 
+    #            :dimensions => 'month', 
+    #            :metrics => 'views', 
+    #            :segment => my_gaid })
+
+    def segments
+      if @user_segments.nil?
+        data = request_default_account_feed
+        xml = Hpricot(data)
+        @user_segments = xml.search("dxp:segment").collect { |s| Segment.new(s) }
+      end
+      return @user_segments
+    end
     
     # This is the method that performs the actual request to get data.
     #
@@ -171,9 +196,16 @@ module Gattica
       set_http_headers
     end
     
-    
+    ######################################################################
     private
-    
+
+    # Gets the default account feed from Google
+    def request_default_account_feed
+      if @default_account_feed.nil?
+        @default_account_feed = do_http_get('/analytics/feeds/accounts/default')
+      end
+      return @default_account_feed
+    end
     
     # Does the work of making HTTP calls and then going through a suite of tests on the response to make
     # sure it's valid and not an error

@@ -261,7 +261,7 @@ module Gattica
       unless args[:segment].nil?
         output += "&segment=#{args[:segment]}"
       end
-
+      
       # TODO: update so that in regular expression filters (=~ and !~), any initial special characters in the regular expression aren't also picked up as part of the operator (doesn't cause a problem, but just feels dirty)
       unless args[:filters].empty?    # filters are a little more complicated because they can have all kinds of modifiers
         output += '&filters=' + args[:filters].collect do |filter|

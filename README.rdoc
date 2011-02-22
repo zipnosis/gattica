@@ -1,4 +1,5 @@
-Gattica is a Ruby library for talking to the Google Analytics API.
+Gem for talking to the Google Analytics API.  Simple to use.  
+Supports metrics, dimensions, sort, filters, goals, and segments
 
 = Installation
 Install the gattica gem using github as the source:
@@ -11,18 +12,87 @@ When you want to require, you just use 'gattica' as the gem name:
   require 'gattica'
 
 = Introduction
-It's a good idea to familiarize yourself with the Google API docs: http://code.google.com/apis/analytics/docs/gdata/gdataDeveloperGuide.html
+It's a good idea to familiarize yourself with the Google API docs: 
+http://code.google.com/apis/analytics/docs/gdata/gdataDeveloperGuide.html
   
-In particular there are some very specific combinations of Metrics and Dimensions that
-you are restricted to and those are explained in this document: http://code.google.com/apis/analytics/docs/gdata/gdataReferenceDimensionsMetrics.html
+In particular there are some very specific combinations of Metrics and 
+Dimensions that you are restricted to and those are explained in this document:
+http://code.google.com/apis/analytics/docs/gdata/gdataReferenceDimensionsMetrics.html
 
-See examples/example.rb for some code that should work automatically if you replace the email/password with your own
+See examples/example.rb for some code that should work automatically if you 
+replace the email/password with your own.
 
 There are generally three steps to getting info from the GA API:
 
 1. Authenticate
 2. Get a profile id
 3. Get the data you really want
+
+== Quick start
+
+Download a local copy & install gem to your computer:
+
+wget https://github.com/chrisle/gattica/tarball/master
+tar -zxvf chrisle-gattica-*
+cd chrisle-gattica-*
+git build gattica.gemspec
+git install gattica
+
+Or, including it your Rails app:
+
+# /gemfile
+gem 'gattica', '>=0.3.3.4', :git => 'git://github.com/chrisle/gattica.git'
+
+Make sure to run '+bundle install+' after you have edited your gemfile.
+
+#################################################
+# Quick start:
+
+# Connect to Google Analytics (timeout in 500 seconds)
+ga = Gattica.new({  :email => 'johndoe@google.com', 
+                    :password => 'password',
+                    :timeout => 500 })
+
+# Show the token Google gave us
+puts ga.token
+
+# Collect the accounts that the authenticated user has access to 
+accounts = ga.accounts
+
+# Display all those accounts
+accounts.each do |a|
+  puts a.title  # => "www.mywebsite.com"
+  puts a.web_property_id  # => "UA-1234567-12"
+  puts a.profile_id  # => 55555
+end
+
+# Specify an account and get visitor and bounce data for this month
+ga.profile_id = 55555
+results = ga.get({ :start_date => '2011-01-01', 
+                   :end_date => '2011-02-01', 
+                   :dimensions => ['month', 'year'],
+                   :metrics => ['visits', 'bounces'],
+                   :sort => ['year', 'month']})
+
+# Find the first profile that has goals
+first_profile_with_goals = accounts.detect {|a| a.goals.count > 0}
+
+# Collect a list of segments available to the authenticated user
+all_segments = ga.segments
+
+# Display all those segments
+all_segments.each {|s| puts "name: " + s.name + ",  id: " + s.id}
+
+# Segment by a mobile traffic (Google's default user segment gaid::-11)
+ga.profile_id = 55555
+mobile_traffic_segment = "gaid::-11"
+
+results = ga.get({ :start_date => '2011-01-01', 
+                   :end_date => '2011-02-01', 
+                   :dimensions => ['month', 'year'],
+                   :metrics => ['visits', 'bounces'],
+                   :sort => ['year', 'month'],
+                   :segment => [mobile_traffic_segment]})
 
 = Usage
 This library does all three. A typical transaction will look like this:

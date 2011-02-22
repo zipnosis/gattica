@@ -76,7 +76,7 @@ Specify an account and get visitor and bounce data for this month
 
 Find the first profile that has goals
 
-  first_profile_with_goals = accounts.detect {|a| a.goals.count > 0}
+  first_profile_with_goals = accounts.detect {|a| a.ga_goals.count > 0}
 
 Collect a list of segments available to the authenticated user
 

@@ -77,6 +77,11 @@ module Gattica
       @http = Net::HTTP.new(SERVER, PORT)
       @http.use_ssl = SECURE
       @http.set_debug_output $stdout if @options[:debug]
+
+      # Set a timeout if the option was given
+      if @options[:timeout] 
+        @http.read_timeout = @options[:timeout]
+      end
       
       # authenticate
       if @options[:email] && @options[:password]      # email and password: authenticate, get a token from Google's ClientLogin, save it for later

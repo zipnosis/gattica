@@ -32,67 +32,70 @@ There are generally three steps to getting info from the GA API:
 
 Download a local copy & install gem to your computer:
 
-wget https://github.com/chrisle/gattica/tarball/master
-tar -zxvf chrisle-gattica-*
-cd chrisle-gattica-*
-git build gattica.gemspec
-git install gattica
+  wget https://github.com/chrisle/gattica/tarball/master
+  tar -zxvf chrisle-gattica-*
+  cd chrisle-gattica-*
+  git build gattica.gemspec
+  git install gattica
 
-Or, including it your Rails app:
+Or, include it your Rails app by editing your gemfile:
+Make sure to run '+bundle install+' afterwards.
 
-# /gemfile
-gem 'gattica', '>=0.3.3.4', :git => 'git://github.com/chrisle/gattica.git'
+  gem 'gattica', '>=0.3.3.4', :git => 'git://github.com/chrisle/gattica.git'
 
-Make sure to run '+bundle install+' after you have edited your gemfile.
+Connect to Google Analytics (timeout in 500 seconds)
 
-#################################################
-# Quick start:
+  ga = Gattica.new({  :email => 'johndoe@google.com', 
+                      :password => 'password',
+                      :timeout => 500 })
 
-# Connect to Google Analytics (timeout in 500 seconds)
-ga = Gattica.new({  :email => 'johndoe@google.com', 
-                    :password => 'password',
-                    :timeout => 500 })
+Show the token Google gave us
 
-# Show the token Google gave us
-puts ga.token
+  puts ga.token
 
-# Collect the accounts that the authenticated user has access to 
-accounts = ga.accounts
+Collect the accounts that the authenticated user has access to 
 
-# Display all those accounts
-accounts.each do |a|
-  puts a.title  # => "www.mywebsite.com"
-  puts a.web_property_id  # => "UA-1234567-12"
-  puts a.profile_id  # => 55555
-end
+  accounts = ga.accounts
 
-# Specify an account and get visitor and bounce data for this month
-ga.profile_id = 55555
-results = ga.get({ :start_date => '2011-01-01', 
-                   :end_date => '2011-02-01', 
-                   :dimensions => ['month', 'year'],
-                   :metrics => ['visits', 'bounces'],
-                   :sort => ['year', 'month']})
+Display all those accounts
 
-# Find the first profile that has goals
-first_profile_with_goals = accounts.detect {|a| a.goals.count > 0}
+  accounts.each do |a|
+    puts a.title  # => "www.mywebsite.com"
+    puts a.web_property_id  # => "UA-1234567-12"
+    puts a.profile_id  # => 55555
+  end
 
-# Collect a list of segments available to the authenticated user
-all_segments = ga.segments
+Specify an account and get visitor and bounce data for this month
 
-# Display all those segments
-all_segments.each {|s| puts "name: " + s.name + ",  id: " + s.id}
+  ga.profile_id = 55555
+  results = ga.get({ :start_date => '2011-01-01', 
+                     :end_date => '2011-02-01', 
+                     :dimensions => ['month', 'year'],
+                     :metrics => ['visits', 'bounces'],
+                     :sort => ['year', 'month']})
 
-# Segment by a mobile traffic (Google's default user segment gaid::-11)
-ga.profile_id = 55555
-mobile_traffic_segment = "gaid::-11"
+Find the first profile that has goals
 
-results = ga.get({ :start_date => '2011-01-01', 
-                   :end_date => '2011-02-01', 
-                   :dimensions => ['month', 'year'],
-                   :metrics => ['visits', 'bounces'],
-                   :sort => ['year', 'month'],
-                   :segment => [mobile_traffic_segment]})
+  first_profile_with_goals = accounts.detect {|a| a.goals.count > 0}
+
+Collect a list of segments available to the authenticated user
+
+  all_segments = ga.segments
+
+Display all those segments
+
+  all_segments.each {|s| puts "name: " + s.name + ",  id: " + s.id}
+
+Segment by a mobile traffic (Google's default user segment gaid::-11)
+
+  ga.profile_id = 55555
+  mobile_traffic_segment = "gaid::-11"
+  results = ga.get({ :start_date => '2011-01-01', 
+                     :end_date => '2011-02-01', 
+                     :dimensions => ['month', 'year'],
+                     :metrics => ['visits', 'bounces'],
+                     :sort => ['year', 'month'],
+                     :segment => [mobile_traffic_segment]})
 
 = Usage
 This library does all three. A typical transaction will look like this:

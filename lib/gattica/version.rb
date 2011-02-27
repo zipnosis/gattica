@@ -1,3 +1,3 @@
 module Gattica
-  VERSION = '0.3.3.chrisle'
+  VERSION = '0.4'
 end

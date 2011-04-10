@@ -1,3 +1,15 @@
+== 0.4.3
+  * FIXED: Typo in start-index parameter
+  * Refactored Engine class into it's own file.
+  * Began to re-style code to wrap at 80 characters
+  * Added some unit tests
+
+== 0.4.2
+  * Added Ruby 1.9 support (Thanks @mathieuravaux https://github.com/mathieuravaux)
+  * Uses hpricot 0.8.4 now.  0.8.3 segfaults.
+  * Added ability to change the timeout when requesting analytics from Google
+  * Added the ability to use max_results
+
 == 0.3.2.scottp
   * scottp Added Analytics API v2 header, and basic support for "segment" argument.
 

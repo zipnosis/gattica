@@ -6,11 +6,11 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
     gemspec.name = "gattica"
-    gemspec.summary = "Gattica is a Ruby library for extracting data from the Google Analytics API."
-    gemspec.email = "cannikinn@gmail.com"
-    gemspec.homepage = "http://github.com/cannikin/gattica"
-    gemspec.description = "Gattica is a Ruby library for extracting data from the Google Analytics API.  It is simple to use, supports metrics, dimensions, sort, filters, goals, and segments"
-    gemspec.authors = ["Rob Cameron", "Christopher Le"]
+    gemspec.summary = "Gattica is a straight forward Ruby Gem for getting data from the Google Analytics API."
+    gemspec.email = "chrisl@seerinteractive.com"
+    gemspec.homepage = "http://github.com/chrisle/gattica"
+    gemspec.description = "Gattica is a straight forward Ruby Gem for getting data from the Google Analytics API.  It supports metrics, dimensions, sort, filters, goals, and segments"
+    gemspec.authors = ["Christopher Le, et all"]
     # Current version of hpricot 0.8.3 seg faults randomly.  Use 0.8.2 instead.
     # see: (https://github.com/hpricot/hpricot/issues#issue/32).
     gemspec.add_dependency 'hpricot', '>=0.8.4'

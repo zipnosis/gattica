@@ -6,7 +6,7 @@ module Gattica
 
     # Initialize Gattica using username/password or token.
     #
-    # = Options:
+    # == Options:
     # To change the defaults see link:settings.rb
     # +:debug+::        Send debug info to the logger (default is false)
     # +:email+::        Your email/login for Google Analytics

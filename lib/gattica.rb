@@ -28,9 +28,7 @@ module Gattica
   
   VERSION = '0.4.3'
   
-  # Creates a new instance of Gattica::Engine and gets us going. Please see the README for usage docs.
-  #   ga = Gattica.new({:email => 'anonymous@anon.com', :password => 'password, :profile_id => 123456 })
-  
+  # Creates a new instance of Gattica::Engine
   def self.new(*args)
     Engine.new(*args)
   end

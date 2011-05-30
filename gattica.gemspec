@@ -9,20 +9,18 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christopher Le, et all"]
-  s.date = %q{2011-05-17}
-  s.description = %q{Gattica is a straight forward Ruby Gem for getting data from the Google Analytics API.  It supports metrics, dimensions, sort, filters, goals, and segments}
+  s.date = %q{2011-05-29}
+  s.description = %q{Gattica is a easy to use Ruby Gem for getting data from the Google Analytics API.  It supports metrics, dimensions, sort, filters, goals, and segments.  It can handle accounts with 1000+ profiles, and can return data in CSV, Hash, or JSON}
   s.email = %q{chrisl@seerinteractive.com}
   s.extra_rdoc_files = [
     "LICENSE",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
-    "History.txt",
     "LICENSE",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION.yml",
-    "examples/example.rb",
     "gattica.gemspec",
     "lib/gattica.rb",
     "lib/gattica/account.rb",
@@ -36,7 +34,6 @@ Gem::Specification.new do |s|
     "lib/gattica/segment.rb",
     "lib/gattica/settings.rb",
     "lib/gattica/user.rb",
-    "lib/gattica/version.rb",
     "test/helper.rb",
     "test/settings.rb",
     "test/suite.rb",
@@ -48,7 +45,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/chrisle/gattica}
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Gattica is a straight forward Ruby Gem for getting data from the Google Analytics API.}
+  s.summary = %q{Gattica is a easy to use Ruby Gem for getting data from the Google Analytics API.}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3

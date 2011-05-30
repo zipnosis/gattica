@@ -24,10 +24,12 @@ module Gattica
       # TODO: check that the user has access to the specified profile and show an error here rather than wait for Google to respond with a message
     end
 
-    # Returns the list of accounts the user has access to. A user may have multiple accounts on Google Analytics
-    # and each account may have multiple profiles. You need the profile_id in order to get info from GA. If you
-    # don't know the profile_id then use this method to get a list of all them. Then set the profile_id of your
-    # instance and you can make regular calls from then on.
+    # Returns the list of accounts the user has access to. A user may have
+    # multiple accounts on Google Analytics and each account may have multiple
+    # profiles. You need the profile_id in order to get info from GA. If you
+    # don't know the profile_id then use this method to get a list of all them.
+    # Then set the profile_id of your instance and you can make regular calls
+    # from then on.
     #
     #   ga = Gattica.new({:email => 'johndoe@google.com', :password => 'password'})
     #   ga.accounts

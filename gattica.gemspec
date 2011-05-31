@@ -5,10 +5,10 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gattica}
-  s.version = "0.4.6"
+  s.version = "0.4.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Christopher Le, et all"]
+  s.authors = [%q{Christopher Le, et all}]
   s.date = %q{2011-05-31}
   s.description = %q{Gattica is a easy to use Ruby Gem for getting data from the Google Analytics API.  It supports metrics, dimensions, sort, filters, goals, and segments.  It can handle accounts with 1000+ profiles, and can return data in CSV, Hash, or JSON}
   s.email = %q{chrisl@seerinteractive.com}
@@ -44,8 +44,8 @@ Gem::Specification.new do |s|
     "test/test_user.rb"
   ]
   s.homepage = %q{http://github.com/chrisle/gattica}
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.4}
   s.summary = %q{Gattica is a easy to use Ruby Gem for getting data from the Google Analytics API.}
 
   if s.respond_to? :specification_version then
@@ -57,12 +57,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rake>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
+      s.add_development_dependency(%q<mocha>, [">= 0"])
       s.add_runtime_dependency(%q<hpricot>, [">= 0"])
       s.add_development_dependency(%q<mocha>, [">= 0"])
     else
       s.add_dependency(%q<gattica>, [">= 0"])
       s.add_dependency(%q<mocha>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
+      s.add_dependency(%q<mocha>, [">= 0"])
       s.add_dependency(%q<mocha>, [">= 0"])
       s.add_dependency(%q<mocha>, [">= 0"])
       s.add_dependency(%q<hpricot>, [">= 0"])
@@ -72,6 +74,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<gattica>, [">= 0"])
     s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])
+    s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<mocha>, [">= 0"])
     s.add_dependency(%q<hpricot>, [">= 0"])

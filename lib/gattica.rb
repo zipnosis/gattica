@@ -25,7 +25,7 @@ require 'gattica/segment'
 # Please see the README for usage docs.
 module Gattica
   
-  VERSION = '0.4.4'
+  VERSION = '0.4.7'
   
   # Creates a new instance of Gattica::Engine
   def self.new(*args)

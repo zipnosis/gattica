@@ -11,7 +11,6 @@ require 'yaml'
 
 require 'gattica/engine'
 require 'gattica/settings'
-require 'gattica/version'
 require 'gattica/hash_extensions'
 require 'gattica/convertible'
 require 'gattica/exceptions'

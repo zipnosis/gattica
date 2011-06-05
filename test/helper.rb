@@ -1,8 +1,7 @@
 require File.join(File.dirname(__FILE__), *%w[.. lib gattica])
- 
+
 require 'rubygems'
 require 'test/unit'
-require 'mocha'
  
 # include Gattica
  

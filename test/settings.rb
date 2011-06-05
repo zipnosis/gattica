@@ -1,8 +1,8 @@
 module GatticaTest
   
   DEFAULT_AUTH = {
-      :email => 'email@domain.com',
-      :password => 'password',
+      :email => 'seerinteractive@gmail.com',
+      :password => '4461goal',
       :debug => true
   }
   DEFAULT_QUERY = {
@@ -11,7 +11,7 @@ module GatticaTest
       :dimensions => ['date'],
       :metrics => ['visits']
   }
-  PROFILE_ID = 12345678
+  PROFILE_ID = 23987717
 
   def self.ga(options={}, profile_id=PROFILE_ID)
     unless defined? @ga

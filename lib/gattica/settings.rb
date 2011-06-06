@@ -23,7 +23,7 @@ module Gattica
     #
     # === Example:
     # +TIMEOUT = 300+::   # Increase timeout to 5 minutes.
-    TIMEOUT = 300
+    TIMEOUT = 100
 
     DEFAULT_ARGS = {
         :start_date => nil,

@@ -251,9 +251,7 @@ module Gattica
       @http = Net::HTTP.new(Settings::SERVER, port)
       @http.use_ssl = Settings::USE_SSL
       @http.set_debug_output $stdout if @options[:debug]
-      defined? @options[:timeout] ?
-          (@http.read_timeout = @options[:timeout]) :
-          (@http.read_timeout = Settings::TIMEOUT)
+      @http.read_timeout = @options[:timeout] if defined? @options[:timeout]
     end
 
     # Sets instance variables from options given during initialization and
@@ -264,14 +262,17 @@ module Gattica
       @user_segments = nil
       @headers = { }.merge(options[:headers]) # headers used for any HTTP requests (Google requires a special 'Authorization' header which is set any time @token is set)
       @default_account_feed = nil
+
     end
 
+    # If the authorization is a email and password then create User objects
+    # or if it's a previous token, use that.  Else, raise exception.
     def check_init_auth_requirements
-      if @options[:email] && @options[:password]
+      if ((defined? @options[:email]) && (defined? @options[:password]))
         @user = User.new(@options[:email], @options[:password])
         @auth = Auth.new(@http, user)
         self.token = @auth.tokens[:auth]
-      elsif @options[:token]
+      elsif (defined? @options[:token])
         self.token = @options[:token]
       else
         raise GatticaError::NoLoginOrToken, 'An email and password or an authentication token is required to initialize Gattica.'

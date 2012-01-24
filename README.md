@@ -1,10 +1,16 @@
-This Fork
-=======
-Deviantech's fork of the Gattica gem has the following modifications:
+UPDATE Jan 24, 2012 - v3.0 API
+==============================
 
-* Authentication by token actually works
+Google deprecated v2.3 of the API.  I'm working on porting over to the v3.0 API 
+now.  I should be done by the end of the week. 
 
--------
+Note:
+* It will use OAuth instead of a login and password
+* I'm changing over to RSpec + VCR for testing
+
+Follow me on Twitter @djchrisle for announcements
+
+<hr />
 
 Gattica
 =======

@@ -1,17 +1,3 @@
-UPDATE Jan 24, 2012 - v3.0 API
-==============================
-
-Google deprecated v2.3 of the API.  I'm working on porting over to the v3.0 API 
-now.  I should be done by the end of the week. 
-
-Note:
-* It will use OAuth instead of a login and password
-* I'm changing over to RSpec + VCR for testing
-
-Follow me on Twitter @djchrisle for announcements
-
-<hr />
-
 Gattica
 =======
 Gattica is an easy to use Gem for getting data from the Google Analytics API.  
@@ -428,6 +414,29 @@ History
 
 Version history
 ---------------
+### 0.6.0
+  * Update to use Google Analytics v2.4 management API
+    TL;DR: Uses the v2.4 API now because Google deprecated <2.3.  
+    :) - Drop-in replacement for you.
+    :) - Won't timeout anymore.
+    :) - Accounts method might be faster if you have a few profiles
+    :( - Accounts method is notably slower if you have >1000 profiles.
+
+    Google has changed the output of the API < 2.3.  Most notable changes
+    were the output of what was the /management/accounts/default call.  Some 
+    of the XML changed, but most notably it didn't return everything all at
+    once.  It used to look like this: http://bit.ly/w6Ummj
+  * Fixed token [deviantech]
+
+### 0.5.1
+  * Added some tests - needs more work :(
+
+### 0.4.7
+  * Removed version numbers [john mcgrath]
+
+### 0.4.6
+  * Removed monkey patch [mathieuravaux]
+
 ### 0.4.4
   * Added a configuration file to unit tests
   * Removed version.rb.  Not needed. (thanks John McGrath see: github.com/john)

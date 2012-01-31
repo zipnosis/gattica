@@ -416,16 +416,19 @@ Version history
 ---------------
 ### 0.6.0
   * Update to use Google Analytics v2.4 management API
-    TL;DR: Uses the v2.4 API now because Google deprecated <2.3.  
-    :) - Drop-in replacement for you.
-    :) - Won't timeout anymore.
-    :) - Accounts method might be faster if you have a few profiles
-    :( - Accounts method is notably slower if you have >1000 profiles.
+
+    TL;DR: Uses the v2.4 API now because Google deprecated <2.3.
+      
+    * :) - Drop-in replacement for you.
+    * :) - Won't timeout anymore.
+    * :) - Accounts method might be faster if you have a few profiles
+    * :( - Accounts method is notably slower if you have >1000 profiles.
 
     Google has changed the output of the API < 2.3.  Most notable changes
     were the output of what was the /management/accounts/default call.  Some 
     of the XML changed, but most notably it didn't return everything all at
     once.  It used to look like this: http://bit.ly/w6Ummj
+    
   * Fixed token [deviantech]
 
 ### 0.5.1

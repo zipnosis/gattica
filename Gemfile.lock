@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    gattica (0.5.1)
+      gattica
+      test-unit
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    test-unit (2.4.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  gattica!
+  test-unit

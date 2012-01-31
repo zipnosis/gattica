@@ -414,6 +414,11 @@ History
 
 Version history
 ---------------
+### 0.6.1
+  * Incorporated fixes by vgololobov
+    * Removed circular dependency
+    * Fixed 1.9.3 init exception https://github.com/chrisle/gattica/pull/6
+
 ### 0.6.0
   * Update to use Google Analytics v2.4 management API
 

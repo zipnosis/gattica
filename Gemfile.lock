@@ -16,6 +16,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  gattica!
   rake
   test-unit

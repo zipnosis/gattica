@@ -46,7 +46,6 @@ module Gattica
       # if we haven't retrieved the user's accounts yet, get them now and save them
       if @user_accounts.nil?
         data = request_default_account_feed
-        puts data.inspect
         xml = Hpricot(data)
         @user_accounts = xml.search(:entry).collect { |entry| Account.new(entry) }
       end

@@ -1,12 +1,5 @@
-require 'net/http'
-require 'net/https'
-
 module Gattica
-  
-  # Authenticates a user against the Google Client Login system
-  
   class Auth
-    
     include Convertible
 
     SCRIPT_NAME = '/accounts/ClientLogin'

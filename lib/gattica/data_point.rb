@@ -55,6 +55,15 @@ module Gattica
         'dimensions' => @dimensions,
         'metrics' => @metrics }.to_yaml
     end
+
+    def to_hash 
+        { :id => @id,
+        :updated => @updated,
+        :title => @title,
+        :dimensions => @dimensions,
+        :metrics => @metrics }
+    end
+
     
   end
   

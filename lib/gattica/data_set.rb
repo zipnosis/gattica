@@ -48,6 +48,15 @@ module Gattica
         'points' => @points }.to_yaml
     end
 
+    def to_hash
+      { :total_results => @total_results,
+        :start_index => @start_index,
+        :items_per_page => @items_per_page,
+        :start_date => @start_date,
+        :end_date => @end_date,
+        :points => @points }
+    end
+
   end
   
 end

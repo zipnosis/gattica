@@ -54,7 +54,7 @@ module Gattica
         :items_per_page => @items_per_page,
         :start_date => @start_date,
         :end_date => @end_date,
-        :points => @points }
+        :points => @points.map(&:to_hash) }
     end
 
   end

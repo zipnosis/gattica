@@ -56,12 +56,15 @@ module Gattica
         'metrics' => @metrics }.to_yaml
     end
 
-    def to_hash 
-        { :id => @id,
-        :updated => @updated,
-        :title => @title,
-        :dimensions => @dimensions,
-        :metrics => @metrics }
+    def to_hash
+
+      res_hash = {}
+
+      @dimensions.each{|d| res_hash.merge!(d) }
+      # output all metrics
+      @metrics.each{|m| res_hash.merge!(m) }
+      res_hash
+
     end
 
     

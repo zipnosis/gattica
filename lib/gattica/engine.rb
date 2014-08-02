@@ -72,6 +72,27 @@ module Gattica
       @user_accounts
     end
 
+    def properties
+      if @user_properties.nil?
+        create_http_connection('www.googleapis.com')
+        response = do_http_get('/analytics/v3/management/accounts/~all/webproperties')
+        @user_properties = JSON.parse(response)['items']
+      end
+      @user_properties
+    end
+
+    def account_summaries
+      if @account_summaries.nil?
+        create_http_connection('www.googleapis.com')
+        response = do_http_get('/analytics/v3/management/accountSummaries')
+        @account_summaries = JSON.parse(response)['items']
+      end
+      @account_summaries
+    end
+
+
+
+
     # Returns the list of segments available to the authenticated user.
     #
     # == Usage
